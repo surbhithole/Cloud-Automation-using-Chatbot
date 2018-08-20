@@ -1,0 +1,89 @@
+<html>
+
+<head>
+  <title>SignIn</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"> </script>
+  <style language="text/css">
+  body,html{
+    height:100%;
+    margin:0;
+  }
+  .bg{
+   /* The image used */
+   background-image: url("images/signIn.png");
+   height: 100%;
+
+   /* Full height */
+
+   position: fixed;
+   /* Center and scale the image nicely */
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size: 59%;
+   background-attachment: fixed;
+
+  }
+
+
+
+form legend{
+    display: none;
+ }
+form div {
+    margin: 1em 0;
+ }
+form label,form input{
+    display: inline-block;
+    width: 12em;
+ }
+form input {
+    padding: 0.25em;
+ }
+ form {
+    max-width: 58em;
+
+    margin: auto;
+
+
+    color: #31d8eb;
+    text-align: center;
+ }
+ #a{
+
+margin-top: 20%;
+margin-left: 35%;
+position: fixed;
+ }
+  </style>
+</head>
+<body class="bg">
+<div id="a">
+  <form action="table.html" method="post" >
+    <fieldset><legend></legend>
+
+      <div>
+        <label for="username">Email ID:</label>
+        <input type="text" id="username" name="username">
+      </div>
+      <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password">
+      </div>
+        &nbsp;
+      <div>
+        <input type="submit" name="register" value="Sign In" class="btn-primary">
+      </div>
+
+      <div>
+  <a href="signUp.html">Don't have a account? SignUp Here!</a>
+ </div>
+ </fieldset>
+</form>
+</div>
+
+</body>
+</html>

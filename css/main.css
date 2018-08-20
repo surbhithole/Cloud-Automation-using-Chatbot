@@ -1,0 +1,116 @@
+input#msgId {
+  padding: 4px;
+  font-size: 1em;
+  width: 900px;
+
+}
+input::placeholder {
+  color: #ccc;
+  margin : 0 auto;
+}
+
+p.userRequest {
+  margin: 4px;
+  padding: 4px 10px 4px 10px;
+  border-radius: 4px;
+  width:auto;
+  clear: both;
+  float: left;
+  background-color: #7d7;
+}
+#tableId,#tableId1{
+  margin-left: auto;
+  margin-right: auto;
+  table-layout: fixed;
+
+}
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+  column-rule-style:solid;
+}
+th,td,tr{
+  column-rule-style:solid;
+  border: 3px solid #dddddd;
+}
+th,td,tr{
+  column-rule-style:solid;
+  border: 3px solid #dddddd;
+}
+p.lexResponse {
+  margin: 4px;
+  padding: 4px 10px 4px 10px;
+  border-radius: 4px;
+  text-align: right;
+  width:auto;
+  max-width: 70%;
+  clear: both;
+  float: right;
+  background-color: #bbf;
+}
+p.lexError {
+  margin: 4px;
+  padding: 4px 10px 4px 10px;
+  border-radius: 4px;
+  text-align: right;
+  width:auto;
+  clear: both;
+  float: right;
+  background-color: #f77;
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+form fieldset {
+
+ }
+form legend{
+    display: none;
+ }
+form div {
+    margin: 1em 0;
+ }
+form label,form input{
+    display: inline-block;
+    width: 12em;
+ }
+form input {
+    padding: 0.25em;
+ }
+ form {
+    max-width: 58em;
+    margin: auto;
+    color: #31d8eb;
+    text-align: center;
+ }

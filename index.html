@@ -1,0 +1,249 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Project</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"> </script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <!-- Below list of files have  been added for IAM authorization-->
+  <script type="text/javascript" src="assets/aws-sdk.min.js"></script>
+  <script type="text/javascript" src="assets/aws-cognito-sdk.min.js"></script>
+  <script type="text/javascript" src="assets/gateway/apigClient.js"></script>
+  <script type="text/javascript" src="assets/gateway/lib/apiGatewayCore/apiGatewayClient.js"></script>
+  <script type="text/javascript" src="assets/gateway/lib/apiGatewayCore/sigV4Client.js"></script>
+  <script type="text/javascript" src="assets/gateway/lib/apiGatewayCore/simpleHttpClient.js"></script>
+  <script type="text/javascript" src="assets/gateway/lib/apiGatewayCore/utils.js"></script>
+  <script type="text/javascript" src="assets/gateway/lib/axios/dist/axios.standalone.js"></script>
+  <script type="text/javascript" src="assets/gateway/lib/CryptoJS/rollups/hmac-sha256.js"></script>
+  <script type="text/javascript" src="assets/gateway/lib/CryptoJS/rollups/sha256.js"></script>
+  <script type="text/javascript" src="assets/gateway/lib/CryptoJS/components/enc-base64.js"></script>
+  <script type="text/javascript" src="assets/gateway/lib/CryptoJS/components/hmac.js"></script>
+  <script type="text/javascript" src="assets/gateway/lib/url-template/url-template.js"></script>
+  <!-- List of files for IAM Authorization ends here -->
+  <link rel="stylesheet" href="css/main.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <script src="js/jwt-decode.min.js"></script>
+  <!-- <script src="js/voice.js"></script> -->
+  <script src="js/main.js"></script>
+</head>
+<body>
+  <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <p style="color:white;height:10px;width:15px;"class="navbar-brand"><span class="glyphicon glyphicon-user"></span></p>
+      <p id="user" style="color:white;font-size:15px;" class="navbar-brand"></p>
+    </div>
+    <ul class="nav navbar-nav">
+      <li ><p style="font-size:15px;"id="table1"><span class="glyphicon glyphicon-th"></span> Table</p></li>
+    </ul>
+    <ul class="nav navbar-nav">
+      <li ><p style="font-size:15px;"id="chat1"><span class="glyphicon glyphicon-comment"></span> Chat</p></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><p style="font-size:15px;"id="logout"><span class="glyphicon glyphicon-log-out"></span> Logout</p></li>
+    </ul>
+  </div>
+</nav>
+<div id="chat">
+  <div class="container">
+      <div class="form-group">
+        <p class="h3"style="text-align:center" for="usr"><b>ChatBox</b></p>
+
+      <div id="conversation" style="width: 800px; height: 500px; border: 1px solid #ccc; background-color: #eee; padding: 4px; overflow: scroll;margin : 0 auto;"></div>
+      </div>
+      <div class="form-group">
+        <p class="h5"style="text-align:center" for="usr"><b>Message</b></p>
+        <input placeholder="Service Suggestions"type="text" class="form-control" id="msgId"  style="margin : 0 auto;width:800px"  />
+        <br />
+        <div id="place"style="text-align:center">
+
+
+        <button class="btn btn-danger" id="clearChat" onclick="clearChat();" style="margin:0 auto;">Clear Chat</button>
+        <img onclick="startDictation()" src="mic-icon.png" style="height=:40px;width:40px;margin:0 auto;" id="mic" />
+        </div>
+        <b>
+          <p id="record" style="text-align:center">
+
+          </p></b>
+        <br />
+      </div>
+  </div>
+</div>
+<div id="table12">
+    <!-- <div>
+      <button id="myBtn" style="margin:40px;" class="btn-primary">Create Instance</button>
+    </div> -->
+
+      <p class="h3"style="text-align:center" for="usr"><b>Instance Details</b></p>
+      <br />
+      <br />
+      <br />
+        <p class="h4"style="text-align:center" for="usr"><b>Openstack Instances</b></p>
+    <div style="margin-left: auto;margin-right: auto; min-width:95%"class="container">
+      <table  id="showData">
+        <!-- <thead>
+      <tr>
+        <th>ImageId</th>
+        <th>InstanceID</th>
+        <th>ImageType</th>
+        <th>InstanceType</th>
+        <th>SecurityGroup</th>
+        <th>KeyPair</th>
+      </tr>
+    </thead> -->
+      </table>
+    </div>
+      <p class="h4"style="text-align:center" for="usr"><b>AWS Instances</b></p>
+      <div style="margin-left: auto;margin-right: auto; min-width:95%"class="container">
+        <table1  id="awsshowData">
+          <!-- <thead>
+        <tr>
+          <th>ImageId</th>
+          <th>InstanceID</th>
+          <th>ImageType</th>
+          <th>InstanceType</th>
+          <th>SecurityGroup</th>
+          <th>KeyPair</th>
+        </tr>
+      </thead> -->
+    </table1>
+      </div>
+    <div id="myModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <p><span style="text-align:right;color:red"class="close">&times;</span></p>
+        <div style="text-align:center"class ="bg">
+          <label for="username">Instance:</label>
+            <select id="shows" style="width:160px;" >
+              <option value="None">Select an Instance</option>
+              <option value="showaws">AWS</option>
+              <option value="showopenstack">Openstack</option>
+            </select>
+        </div>
+        <div id="showaws"class="showstack">
+          <form>
+            <fieldset>
+              <div>
+                <p id="awsValue">
+                  AWS Instance
+                </p>
+              </div>
+              <div>
+                <label for="username">Machine Image ID : AMIID :</label>
+                <select id="machineId" style="width:160px;" >
+                  <option value="ami-467ca739">Amazon Linux AMI 2018.03.0 (HVM) - ami-467ca739</option>
+                  <option value="ami-f973ab84">Amazon Linux 2 LTS Candidate 2 AMI (HVM) - ami-f973ab84</option>
+                  <option value="ami-62bda218">SUSE Linux Enterprise Server 12 SP3 (HVM) - ami-62bda218</option>
+                  <option value="ami-6871a115">Red Hat Enterprise Linux 7.5 (HVM) - ami-6871a115</option>
+                  <option value="ami-43a15f3e">Ubuntu Server 16.04 LTS (HVM) – ami-43a15f3e</option>
+                </select>
+              </div>
+              <div>
+                <label for="typeOfInstance">Type of Instance:</label>
+                <select id="typeOfInstance" style="width:160px;" >
+                  <option value="t2.xlarge">t2.xlarge</option>
+                  <option value="t2.micro">t2.micro – free tier eligible</option>
+                  <option value="t2.large">t2.large</option>
+                  <option value="m4.large">m4.large</option>
+                  <option value="m5.large">m5.large</option>
+                </select>
+              </div>
+              <div>
+                <label for="keyPair">Key Pair:</label>
+                <select id="KeyPair" style="width:160px;" >
+                  <option value="newk">New</option>
+                  <option value="existingk">Existing</option>
+                </select>
+              </div>
+              <div>
+                <label for="security">Security Group Name:</label>
+                <select id="security" style="width:160px;" >
+                  <option value="new">New</option>
+                  <option value="existing">Existing</option>
+                </select>
+              </div>
+              <div>
+                <label for="confirm">Confirmation:</label>
+                <select id="confirmation" style="width:160px;" >
+                  <option value="yes">Yes</option>
+                  <option value="no">No</option>
+                </select>
+              </div>
+                  &nbsp;  &nbsp;
+              <div>
+                <p><span style="text-align:right;color:blue"class="create">Create Instance</span></p>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+        <div id="showopenstack"class="showstack">
+          <form >
+            <fieldset><legend></legend>
+              <div>
+                <p id="OpenValue">
+                  Openstack Instance
+                </p>
+              </div>
+              <div>
+                <label for="username">Openstack Machine ID</label>
+                <select id="openstackmachineId" style="width:160px;" >
+                  <option value="c58309b1-46e2-408c-bf6a-2d64b65ae25f">cirros-0.3.5-x86_64-disk : c58309b1-46e2-408c-bf6a-2d64b65ae25f</option>
+                </select>
+              </div>
+              <div>
+                <label for="openmachine">Machine Type:</label>
+                <select id="openmachine" style="width:160px;" >
+                  <option value="1">m1.tiny</option>
+                  <option value="2">m1.small</option>
+                  <option value="3">m1.medium/option>
+                  <option value="4">m1.large</option>
+                  <option value="42">m1.nano</option>
+                </select>
+              </div>
+              <div>
+                <label for="openkeyPair">Want to create instance using key></label>
+                <select id="openKeyPair" style="width:160px;" >
+                  <option value="opennewk">Yes</option>
+                  <option value="openexistingk">No</option>
+                </select>
+              </div>
+              <div>
+                <label for="openKeyOption">Key Options to Use:</label>
+                <select id="openKeyOption" style="width:160px;" >
+                  <option value="openNew">New</option>
+                  <option value="openExisting">Existing</option>
+                </select>
+              </div>
+              <div>
+                <label for="openconfirm">Confirmation:</label>
+                <select id="openconfirmation" style="width:160px;" >
+                  <option value="openyes">Yes</option>
+                  <option value="openno">No</option>
+                </select>
+              </div>
+              <div>
+                <label for="openname">Name of Instance:</label>
+                <input id="openName" />
+              </div>
+                  &nbsp;  &nbsp;
+              <div>
+                <p><span style="text-align:right;color:blue"class="create1">Create Instance</span></p>
+                <!-- <input id="finish1" type="submit" name="register" value="Finish" class="btn-primary" > -->
+              </div>
+         </fieldset>
+        </form>
+        </div>
+      </div>
+    </div>
+</div>
+</body>
+</html>
